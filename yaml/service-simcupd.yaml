@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: simcupd-service
+  namespace: simcupd-development
+  labels:
+    app: simcupd
+    version: "1.0"
+    environment: development
+spec:
+  selector:
+    app: simcupd
+    version: "1.0"
+    environment: development
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8080

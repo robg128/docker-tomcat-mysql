@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simcupd-deployment
+  namespace: simcupd-development
+  labels:
+    app: simcupd
+    version: "1.0"
+    environment: development
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simcupd
+      version: "1.0"
+      environment: development
+  template:
+    metadata:
+      labels:
+        app: simcupd
+        version: "1.0"
+        environment: development
+    spec:
+      containers:
+      - name: simcupd-container
+        image: robglasener/tomcat-simcupd:v1.0
+        env:
+        - name: database.username
+          value: "trovix"
+        - name: database.password
+          value: "trovix"
+        - name: database.instance
+          value: "cupdemudb"
+        - name: datasource.url
+          value: "mysql-service.simcupd-development"
+        ports:
+        - containerPort: 8080
