@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simcupd-deployment
+  namespace: simcupd-development
+  labels:
+    app: simcupd
+    version: "1.0"
+    environment: development
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simcupd
+      version: "1.0"
+      environment: development
+  template:
+    metadata:
+      labels:
+        app: simcupd
+        version: "1.0"
+        environment: development
+    spec:
+      containers:
+      - name: simcupd-container
+        image: gcr.io/simcupd/simcupd:v3
+        ports:
+        - containerPort: 8080
+       env:
+        - name: REDIS_HOST
+          value: test-staging-redis
+        - name: APP_ENV
+          value: staging
+        - name: CLIENT
+          value: test
+        volumeMounts:
+            - mountPath: /etc/sidekiq/config
+              name: test-staging-sidekiq          
