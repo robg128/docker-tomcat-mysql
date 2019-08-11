@@ -23,15 +23,6 @@ spec:
     spec:
       containers:
       - name: simcupd-container
-        image: robglasener/tomcat-simcupd:v1.0
-        env:
-        - name: database.username
-          value: "trovix"
-        - name: database.password
-          value: "trovix"
-        - name: database.instance
-          value: "cupdemudb"
-        - name: datasource.url
-          value: "mysql-service.simcupd-development"
+        image: gcr.io/simcupd/simcupd:v1
         ports:
         - containerPort: 8080
