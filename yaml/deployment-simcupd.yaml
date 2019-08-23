@@ -23,18 +23,6 @@ spec:
     spec:
       containers:
       - name: simcupd-container
-        image: gcr.io/simcupd/simcupd:v3
+        image: 673973395263.dkr.ecr.us-east-2.amazonaws.com/simcupd:1.0
         ports:
         - containerPort: 8080
-
-        volumeMounts: 
-        - name: cupd-emulator-properties
-          mountPath: /trovix.com/data/customers/cupdemu
-      volumes: 
-        - name: cupd-emulator-properties
-          configMap: 
-                name: cupd-emulator-configmap
-                items:
-                  - key: cupd-emulator.properties
-                    path: cupd-emulator.properites
-                   
